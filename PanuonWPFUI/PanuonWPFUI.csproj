@@ -6,6 +6,7 @@
   </PropertyGroup>
   <ItemGroup>
     <None Remove="Image\UI.png" />
+    <None Remove="Resource\lion.png" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Panuon.WPF.UI" Version="1.1.6.5" />
@@ -13,5 +14,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Image\UI.png" />
+    <Resource Include="Resource\lion.png" />
   </ItemGroup>
 </Project>

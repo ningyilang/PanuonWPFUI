@@ -8,8 +8,213 @@
         xmlns:pu="clr-namespace:Panuon.WPF.UI;assembly=Panuon.WPF.UI" 
         Title="OnlineClassDashboard" Height="450" Width="800"
             Background="#FAFAFE"
-            pu:WindowXCaption.Buttons="None">
+            pu:WindowXCaption.Buttons="None"
+            pu:WindowXCaption.Height="50"
+            pu:WindowXCaption.Background="Transparent">
+    <pu:WindowXCaption.HeaderTemplate>
+        <DataTemplate>
+            <Grid VerticalAlignment="Bottom"
+                 pu:WindowX.IsDragMoveArea="False"
+                  Margin="0 0 30 0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="300"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+                <Border Height="30"
+                        Grid.Column="1"
+                        Width="30"
+                        CornerRadius="15">
+                    <Border.Background>
+                        <ImageBrush ImageSource="/Resource/lion.png"
+                                    RenderOptions.BitmapScalingMode="HighQuality"/>
+                    </Border.Background>
+                </Border>
+                <TextBlock Text="Good Evening Mikey!"
+                           Grid.Column="2"
+                           pu:WindowX.IsDragMoveArea="true"
+                           VerticalAlignment="Center"
+                           Margin="10 0"
+                           FontWeight="Bold"/>
+                <ComboBox Grid.Column="4"
+                          BorderThickness="2"
+                          pu:ComboBoxHelper.CornerRadius="5"
+                          pu:ComboBoxHelper.ItemsHoverBackground="{x:Null}"
+                          pu:ComboBoxHelper.ItemsSelectedBackground="{x:Null}"
+                          pu:ComboBoxHelper.ItemsForeground="Orange"
+                          pu:ComboBoxHelper.ItemsSelectedForeground="Orange"
+                          Width="100"
+                          Height="25"
+                          FontSize="12"
+                          pu:WindowX.IsDragMoveArea="False"
+                          pu:DropDownHelper.BorderThickness="1"
+                          pu:DropDownHelper.BorderBrush="#d1d1d1">
+                    <ComboBoxItem Content="items1" IsSelected="True"/>
+                    <ComboBoxItem Content="items2"/>
+                </ComboBox>
+                <Button Width="25"
+                        Height="25"
+                        pu:ButtonHelper.CornerRadius="5"
+                        Background="#ff7f5d"
+                        Grid.Column="5"
+                        Foreground="White"
+                        FontFamily="{StaticResource PanuonIconFont}"
+                        Content="&#xe941;"
+                        Margin="10 0 10 0"/>
+                <Button Width="25"
+                        Height="25"                       
+                        Background="Transparent"
+                        Grid.Column="6"
+                        Foreground="Black"
+                        FontFamily="{StaticResource PanuonIconFont}"
+                        Content="&#xe941;"
+                        Margin="0 0 10 0"
+                        pu:ButtonHelper.ClickBackground="{x:Null}"
+                        pu:ButtonHelper.HoverBackground="{x:Null}"
+                        pu:ButtonHelper.HoverForeground="OrangeRed"
+                        pu:ButtonHelper.ClickForeground="Orange"/>
+            </Grid>
+        </DataTemplate>
+    </pu:WindowXCaption.HeaderTemplate>
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Border Background="White"
+                Margin="20 -30 20 20"
+                CornerRadius="15">
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="50" 
+                                  Color="#EAEAEA"
+                                  Opacity="0.7"
+                                  ShadowDepth="15"
+                                  Direction="270"/>
+            </Border.Effect>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <StackPanel Orientation="Horizontal"
+                            
+                            Margin="20">
+                    <TextBlock  FontFamily="{StaticResource PanuonIconFont}"
+                                Text="&#xe941;"
+                                Foreground="Purple"
+                               Margin="5 0 5 0"/>
+                    <TextBlock Text="himtou" 
+                               FontSize="12"
+                               FontWeight="Bold"/>
+
+                </StackPanel>
+                <TreeView Grid.Row="1"
+                          BorderThickness="0"
+                          Background="Transparent"
+                          FontSize="10"
+                          pu:TreeViewHelper.ItemsIcon="&#xe941;"
+                          pu:TreeViewHelper.ItemsHoverBackground="Orange"
+                          pu:TreeViewHelper.ItemsHoverForeground="OrangeRed"
+                          pu:IconHelper.Margin="0 0 15 0"
+                          pu:IconHelper.FontSize="15">
+                    <TreeViewItem pu:TreeViewItemHelper.IsStyleless="True"
+                                  Height="20">
+                        <TreeViewItem.Header>
+                            <TextBlock Text="Menu"
+                                       Foreground="#6d66ab"/>
+                        </TreeViewItem.Header>
+                    </TreeViewItem>
+                    <TreeViewItem pu:TreeViewItemHelper.Icon="&#xe942;"
+                                  Header="Home"
+                                  />
+                    <TreeViewItem pu:TreeViewItemHelper.Icon="&#xe943;"
+                                  Header="Main"/>
+                    <TreeViewItem pu:TreeViewItemHelper.Icon="&#xe944;"
+                                  Header="Setting"/>
+                    <TreeViewItem pu:TreeViewItemHelper.Icon="&#xe945;"
+                                  Header="Menu"/>
+                    <TreeViewItem pu:TreeViewItemHelper.IsStyleless="True"
+                                  Height="20">
+                        <TreeViewItem.Header>
+                            <TextBlock Text="Sub"
+                                       Foreground="#6d66ab"/>
+                        </TreeViewItem.Header>
+                    </TreeViewItem>
+                    <TreeViewItem pu:TreeViewItemHelper.Icon="&#xe950;"
+                                  Header="Main"/>
+                    <TreeViewItem pu:TreeViewItemHelper.Icon="&#xe951;"
+                                  Header="Setting"/>
+                    <TreeViewItem pu:TreeViewItemHelper.Icon="&#xe952;"
+                                  Header="Menu"/>
+                </TreeView>
+                <ComboBox Grid.Row="2"
+                          VerticalAlignment="Center"
+                          Margin="20 10"
+                          BorderThickness="1"
+                          pu:ComboBoxHelper.CornerRadius="5"
+                          pu:ComboBoxHelper.ItemsHoverBackground="{x:Null}"
+                          pu:ComboBoxHelper.ItemsSelectedBackground="{x:Null}"
+                          pu:ComboBoxHelper.ItemsForeground="Orange"
+                          pu:ComboBoxHelper.ItemsSelectedForeground="Orange"
+                          Width="120"
+                          Height="30"
+                          FontSize="12"
+                          Background="#f9fafe"
+                          HorizontalAlignment="Left"
+                          pu:WindowX.IsDragMoveArea="False"
+                          pu:DropDownHelper.BorderThickness="1"
+                          pu:DropDownHelper.BorderBrush="#d1d1d1">
+                    <ComboBoxItem Content="items1" IsSelected="True">
+                        <ComboBoxItem.ContentTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="30"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Border Height="20"
+                                            Width="20"
+                                            CornerRadius="1">
+                                        <Border.Background>
+                                            <ImageBrush ImageSource="/Resource/lion.png"/>
+                                        </Border.Background>
+                                    </Border>
+                                    <TextBlock Text="Mary"
+                                               Margin="10 0 0 0 "
+                                               Grid.Column="1"/>
+                                </Grid>
+                            </DataTemplate>
+                        </ComboBoxItem.ContentTemplate>
+                    </ComboBoxItem>
+                    <ComboBoxItem Content="items2">
+                        <ComboBoxItem.ContentTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="30"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Border Height="20"
+                                            Width="20"
+                                            CornerRadius="1">
+                                        <Border.Background>
+                                            <ImageBrush ImageSource="/Resource/lion.png"/>
+                                        </Border.Background>
+                                    </Border>
+                                    <TextBlock Text="Mark"
+                                               Margin="10 0 0 0 "
+                                               Grid.Column="1"/>
+                                </Grid>
+                            </DataTemplate>
+                        </ComboBoxItem.ContentTemplate>
+                    </ComboBoxItem>
+                </ComboBox>
+            </Grid>
+        </Border>
     </Grid>
 </pu:WindowX>
