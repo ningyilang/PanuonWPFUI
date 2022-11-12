@@ -3,14 +3,24 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:prism="http://prismlibrary.com/"
+        prism:ViewModelLocator.AutoWireViewModel="True"
         xmlns:local="clr-namespace:Panuon.WPF.UI;assembly=Panuon.WPF.UI"
         mc:Ignorable="d"
         xmlns:pu="clr-namespace:Panuon.WPF.UI;assembly=Panuon.WPF.UI" 
-        Title="OnlineClassDashboard" Height="450" Width="800"
+        Title="OnlineClassDashboard" Height="600" Width="1000"
             Background="#FAFAFE"
             pu:WindowXCaption.Buttons="None"
             pu:WindowXCaption.Height="50"
-            pu:WindowXCaption.Background="Transparent">
+            pu:WindowXCaption.Background="Transparent"
+            pu:ScrollBarHelper.ThumbBackground="#eaeaea"
+            pu:ScrollBarHelper.TrackBorderThickness="6"
+            pu:ScrollBarHelper.HoverThumbBackground="#667944f6"
+            xmlns:convert="clr-namespace:PanuonWPFUI.Convert"
+            >
+    <Window.Resources>
+        <convert:IIconConverter x:Key="IconConvert"/>
+    </Window.Resources>
     <pu:WindowXCaption.HeaderTemplate>
         <DataTemplate>
             <Grid VerticalAlignment="Bottom"
@@ -169,52 +179,467 @@
                           pu:WindowX.IsDragMoveArea="False"
                           pu:DropDownHelper.BorderThickness="1"
                           pu:DropDownHelper.BorderBrush="#d1d1d1">
-                    <ComboBoxItem Content="items1" IsSelected="True">
-                        <ComboBoxItem.ContentTemplate>
-                            <DataTemplate>
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="30"/>
-                                        <ColumnDefinition Width="*"/>
-                                    </Grid.ColumnDefinitions>
-                                    <Border Height="20"
+                    <ComboBox.ItemContainerStyle>
+                        <Style TargetType="ComboBoxItem"
+                               BasedOn="{StaticResource {x:Type ComboBoxItem}}">
+                            <Setter Property="ContentTemplate">
+                                <Setter.Value>
+                                    <DataTemplate>
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="30"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Border Height="20"
                                             Width="20"
                                             CornerRadius="1">
-                                        <Border.Background>
-                                            <ImageBrush ImageSource="/Resource/lion.png"/>
-                                        </Border.Background>
-                                    </Border>
-                                    <TextBlock Text="Mary"
-                                               Margin="10 0 0 0 "
-                                               Grid.Column="1"/>
-                                </Grid>
-                            </DataTemplate>
-                        </ComboBoxItem.ContentTemplate>
+                                                <Border.Background>
+                                                    <ImageBrush ImageSource="/Resource/lion.png"/>
+                                                </Border.Background>
+                                            </Border>
+                                            <ContentControl Content="{Binding}"
+                                                    Grid.Column="1"
+                                                    VerticalAlignment="Center"
+                                                    Margin="10 0 0 0 "/>
+                                        </Grid>
+                                    </DataTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </ComboBox.ItemContainerStyle>
+                    <ComboBoxItem Content="items1" >
+                        
                     </ComboBoxItem>
                     <ComboBoxItem Content="items2">
-                        <ComboBoxItem.ContentTemplate>
-                            <DataTemplate>
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="30"/>
-                                        <ColumnDefinition Width="*"/>
-                                    </Grid.ColumnDefinitions>
-                                    <Border Height="20"
-                                            Width="20"
-                                            CornerRadius="1">
-                                        <Border.Background>
-                                            <ImageBrush ImageSource="/Resource/lion.png"/>
-                                        </Border.Background>
-                                    </Border>
-                                    <TextBlock Text="Mark"
-                                               Margin="10 0 0 0 "
-                                               Grid.Column="1"/>
-                                </Grid>
-                            </DataTemplate>
-                        </ComboBoxItem.ContentTemplate>
+                       
                     </ComboBoxItem>
                 </ComboBox>
             </Grid>
         </Border>
+        <Grid Grid.Column="1"
+              Margin="20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1.5*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1.5*"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <GroupBox Background="Transparent"
+                          BorderThickness="0"
+                          pu:GroupBoxHelper.HeaderSeparatorVisibility="Collapsed"
+                          Header="Welcom back"
+                          VerticalAlignment="Stretch"
+                          pu:GroupBoxHelper.HeaderFontSize="16">
+                    <pu:GroupBoxHelper.ExtendControl>
+                        <Button Background="White"
+                                Foreground="#7947f6"
+                                Width="25"
+                                Height="25"
+                                pu:ButtonHelper.CornerRadius="5"
+                                FontFamily="{StaticResource PanuonIconFont}"
+                                Content="&#xe941;"
+                                />
+                    </pu:GroupBoxHelper.ExtendControl>
+                    <ListBox BorderThickness="0"
+                             VerticalAlignment="Stretch"
+                             Margin="-15 0 0 0"
+                             ItemsSource="{Binding Db}"
+                             Background="Transparent"
+                             pu:ListBoxHelper.ItemsBackground="White"
+                             pu:ListBoxHelper.ItemsWidth="60"
+                            
+                             pu:ListBoxHelper.ItemsMargin="10 10 10 10"
+                             pu:ListBoxHelper.ItemsHoverBackground="{x:Null}"
+                             pu:ListBoxHelper.ItemsSelectedBackground="{x:Null}"
+                             pu:ListBoxHelper.ItemsCornerRadius="15"
+                             pu:ListBoxHelper.ItemsShadowColor="LightGray"
+                             pu:ShadowHelper.BlurRadius="15"
+                             pu:ShadowHelper.Opacity="0.5"
+                             ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                             ScrollViewer.HorizontalScrollBarVisibility="Hidden" d:ItemsSource="{d:SampleData ItemCount=5}">
+                        
+                        <ListBox.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel Orientation="Horizontal" />
+                            </ItemsPanelTemplate>
+                        </ListBox.ItemsPanel>
+                        <ListBox.ItemContainerStyle>
+                            <Style TargetType="ListBoxItem"
+                                   BasedOn="{StaticResource {x:Type ListBoxItem}}">
+                                <Setter Property="VerticalContentAlignment" Value="Stretch"/>
+                                <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                                <Setter Property="VerticalAlignment" Value="Stretch"/>
+                                <Setter Property="HorizontalAlignment" Value="Stretch"/>
+                                <Setter Property="ContentTemplate">
+                                    <Setter.Value>
+                                        <DataTemplate>
+                                            <Grid>
+                                                <Grid 
+                                                      x:Name="GridTemplate1">
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="auto"/>
+                                                        <RowDefinition Height="*"/>
+                                                        <RowDefinition Height="auto"/>
+                                                    </Grid.RowDefinitions>
+                                                    <Border Height="20"
+                                                        Width="20"
+                                                        CornerRadius="1">
+                                                        <Border.Effect>
+                                                            <DropShadowEffect BlurRadius="15" 
+                                                                          Color="#eaeaea"
+                                                                          Opacity="0.7"
+                                                                          Direction="270"
+                                                                          ShadowDepth="10"/>
+                                                        </Border.Effect>
+                                                        <Border.Background>
+                                                            <ImageBrush ImageSource="/Resource/lion.png"/>
+                                                        </Border.Background>
+                                                    </Border>
+                                                    <!--<&#13;换行>-->
+                                                    <Grid Grid.Row="1"
+                                                          VerticalAlignment="Stretch"
+                                                          HorizontalAlignment="Stretch"
+                                                         >
+                                                        <TextBlock Text="{Binding content.Text}"
+                                                         FontSize="10"
+                                                         Grid.Row="1"                                                         
+                                                         Foreground="Black"
+                                                         VerticalAlignment="Center"                                                        
+                                                         HorizontalAlignment="Stretch"
+                                                        RenderTransformOrigin="0.5,0.5"
+                                                          Margin="-50,0,-50,0">
+                                                            <TextBlock.RenderTransform>
+                                                                <RotateTransform Angle="-90"/>
+                                                            </TextBlock.RenderTransform>
+                                                        </TextBlock>
+                                                    </Grid>
+                                                    
+                                                    <Button Background="White"
+                                                        Foreground="#7947f6"
+                                                        Width="25"
+                                                        Height="25"
+                                                        pu:ButtonHelper.CornerRadius="5"
+                                                        FontFamily="{StaticResource PanuonIconFont}"
+                                                        Content="{Binding content.Icon1,Converter={StaticResource IconConvert}}"
+                                                        Grid.Row="2"/>
+                                                </Grid>
+                                                <Grid 
+                                                      x:Name="GridTemplate2">
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="auto"/>
+                                                        <RowDefinition Height="*"/>
+                                                        <RowDefinition Height="auto"/>
+                                                        <RowDefinition Height="auto"/>
+                                                    </Grid.RowDefinitions>
+                                                    <Border Height="20"
+                                                            HorizontalAlignment="Left"
+                                                            Width="20"
+                                                            CornerRadius="1"
+                                                            Margin="15 10 0 0">
+                                                        <Border.Effect>
+                                                            <DropShadowEffect BlurRadius="15" 
+                                                                          Color="#eaeaea"
+                                                                          Opacity="0.7"
+                                                                          Direction="270"
+                                                                          ShadowDepth="10"/>
+                                                        </Border.Effect>
+                                                        <Border.Background>
+                                                            <ImageBrush ImageSource="/Resource/lion.png"/>
+                                                        </Border.Background>
+                                                    </Border>
+                                                    <Grid Grid.Row="1"
+                                                          Margin="0 15 0 0">
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition/>
+                                                            <ColumnDefinition/>
+                                                        </Grid.ColumnDefinitions>
+                                                        <!--<&#13;换行>-->
+                                                        <TextBlock Text="{Binding content.Name}"
+                                                           FontSize="10"                                                         
+                                                           Foreground="Gray"
+                                                           FontWeight="Bold"
+                                                           Margin="20 0 0 0"
+                                                        VerticalAlignment="Center"
+                                                        HorizontalAlignment="Left"
+                                                        />
+                                                        <Label Grid.Column="1"
+                                                               Height="20"
+                                                               Width="50"
+                                                               Background="#e7f0ff"
+                                                               HorizontalAlignment="Center"
+                                                               VerticalAlignment="Center"
+                                                               Margin="20 0 0 0"
+                                                               Foreground="#76a5f5"
+                                                               Content="{Binding content.Name}"
+                                                               Padding="10 0"                                                              
+                                                               VerticalContentAlignment="Center"
+                                                               HorizontalContentAlignment="Center"
+                                                               FontSize="10"
+                                                               pu:LabelHelper.CornerRadius="5"/>
+                                                    </Grid>
+                                                    <TextBlock Text="{Binding content.Text}"
+                                                               Grid.Row="2"
+                                                               VerticalAlignment="Center"
+                                                               HorizontalAlignment="Center"                                                              
+                                                               FontSize="8"
+                                                               Foreground="LightGray"
+                                                               Margin="15 10 0 0"/>
+                                                    <StackPanel Orientation="Horizontal"
+                                                                HorizontalAlignment="Left"
+                                                                VerticalAlignment="Center"
+                                                                Margin="10 10 0 0"
+                                                                Grid.Row="3">
+                                                        <Button Background="White"
+                                                                Margin="0 10"
+                                                        Foreground="#7947f6"
+                                                        Width="25"
+                                                        Height="25"
+                                                        pu:ButtonHelper.CornerRadius="5"
+                                                        FontFamily="{StaticResource PanuonIconFont}"
+                                                        Content="{Binding content.Icon1}"
+                                                        />
+                                                        <Button Background="White"
+                                                                Margin="10"
+                                                        Foreground="#7947f6"
+                                                        Width="25"
+                                                        Height="25"
+                                                        pu:ButtonHelper.CornerRadius="5"
+                                                        FontFamily="{StaticResource PanuonIconFont}"
+                                                        Content="{Binding content.Icon2}"
+                                                        />
+                                                        <Button Background="White"
+                                                                Margin="10"
+                                                        Foreground="#7947f6"
+                                                        Width="25"
+                                                        Height="25"
+                                                        pu:ButtonHelper.CornerRadius="5"
+                                                        FontFamily="{StaticResource PanuonIconFont}"
+                                                        Content="{Binding content.Icon3}"
+                                                        />
+                                                    </StackPanel>
+                                                    
+                                                </Grid>
+                                            </Grid>
+                                            <DataTemplate.Triggers>
+                                                <DataTrigger Binding="{Binding IsSelected,RelativeSource={RelativeSource AncestorType=ListBoxItem,Mode=FindAncestor},Mode=OneWay}"
+                                                             Value="True">
+                                                    <Setter TargetName="GridTemplate1" Property="Visibility" Value="Collapsed"/>
+                                                    <Setter TargetName="GridTemplate2" Property="Visibility" Value="Visible"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding IsSelected,RelativeSource={RelativeSource AncestorType=ListBoxItem,Mode=FindAncestor},Mode=OneWay}"
+                                                             Value="false">
+                                                    <Setter TargetName="GridTemplate1" Property="Visibility" Value="Visible"/>
+                                                    <Setter TargetName="GridTemplate2" Property="Visibility" Value="Collapsed"/>
+                                                </DataTrigger>
+                                            </DataTemplate.Triggers>
+                                           
+                                        </DataTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                                <Style.Triggers>
+                                    <Trigger Property="IsSelected"
+                                             Value="true">
+                                        <Trigger.EnterActions>
+                                            <BeginStoryboard>
+                                                <Storyboard>
+                                                    <DoubleAnimation Storyboard.TargetProperty="Width"
+                                                                     To="150"
+                                                                     Duration="0:0:0.3">
+                                                        <DoubleAnimation.EasingFunction>
+                                                            <CubicEase EasingMode="EaseInOut"/>
+                                                        </DoubleAnimation.EasingFunction>
+                                                    </DoubleAnimation>
+                                                </Storyboard>
+                                            </BeginStoryboard>
+                                        </Trigger.EnterActions>
+                                        <Trigger.ExitActions>
+                                            <BeginStoryboard>
+                                                <Storyboard>
+                                                    <DoubleAnimation Storyboard.TargetProperty="Width"
+                                                                    
+                                                                     Duration="0:0:0.3">
+                                                        <DoubleAnimation.EasingFunction>
+                                                            <CubicEase EasingMode="EaseInOut"/>
+                                                        </DoubleAnimation.EasingFunction>
+                                                    </DoubleAnimation>
+                                                </Storyboard>
+                                            </BeginStoryboard>
+                                        </Trigger.ExitActions>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </ListBox.ItemContainerStyle>
+                        <!--<ListBoxItem Content="{Binding }"
+                                     VerticalAlignment="Stretch"
+                                     />
+                        <ListBoxItem Content="item2"/>
+                        <ListBoxItem Content="item3"/>
+                        <ListBoxItem Content="item4"/>-->
+                    </ListBox>
+                </GroupBox>
+                <GroupBox Background="Transparent"
+                          Grid.Column="1"
+                          BorderThickness="0"
+                          pu:GroupBoxHelper.HeaderSeparatorVisibility="Collapsed"
+                          Header="Daliy Study Rutine"
+                          pu:GroupBoxHelper.HeaderFontSize="16">
+                    <pu:GroupBoxHelper.ExtendControl>
+                        <Button Background="White"
+                                Foreground="#7947f6"
+                                Width="25"
+                                Height="25"
+                                pu:ButtonHelper.CornerRadius="5"
+                                FontFamily="{StaticResource PanuonIconFont}"
+                                Content="&#xe941;"
+                                pu:ButtonHelper.ShadowColor="#4974f6"
+                                pu:ShadowHelper.Opacity="0.2"
+                                pu:ShadowHelper.BlurRadius="15"
+                                pu:ShadowHelper.ShadowDepth="5"
+                                pu:ShadowHelper.Direction="270"/>
+                    </pu:GroupBoxHelper.ExtendControl>
+                </GroupBox>
+            </Grid>
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1.2*"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <GroupBox Background="Transparent"
+                          BorderThickness="0"
+                          pu:GroupBoxHelper.HeaderSeparatorVisibility="Collapsed"
+                          Header="Today lectures"
+                          pu:GroupBoxHelper.HeaderFontSize="16">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Height="40"
+                               Width="40"
+                               pu:LabelHelper.CornerRadius="5"
+                               Background="#f6f4ff"
+                               Margin="5"
+                               FontFamily="{StaticResource PanuonIconFont}"
+                               VerticalAlignment="Center"
+                               HorizontalAlignment="Center"
+                               VerticalContentAlignment="Center"
+                               HorizontalContentAlignment="Center"
+                               Content="&#xe990;"
+                               Foreground="#7947f8"/>
+                        <Label Height="40"
+                               Width="40"
+                               pu:LabelHelper.CornerRadius="5"
+                               Background="#f6f4ff"
+                               Margin="5"
+                               FontFamily="{StaticResource PanuonIconFont}"
+                               VerticalAlignment="Center"
+                               HorizontalAlignment="Center"
+                               VerticalContentAlignment="Center"
+                               HorizontalContentAlignment="Center"
+                               Content="&#xe991;"
+                               Foreground="#ed5c96"
+                               Grid.Row="1"/>
+                        <Label Height="40"
+                               Width="40"
+                               pu:LabelHelper.CornerRadius="5"
+                               Background="#f6f4ff"
+                               Margin="5"
+                               FontFamily="{StaticResource PanuonIconFont}"
+                               VerticalAlignment="Center"
+                               HorizontalAlignment="Center"
+                               VerticalContentAlignment="Center"
+                               HorizontalContentAlignment="Center"
+                               Content="&#xe992;"
+                               Foreground="#4e8cf2"
+                               Grid.Row="2"/>
+                        <StackPanel Orientation="Vertical"
+                                    Grid.Row="0"
+                                    Grid.Column="1"
+                                    VerticalAlignment="Center">
+                            <TextBlock Text="September 20th,2022"
+                                       FontSize="13"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Center"
+                                       Foreground="Gray"/>
+                            <TextBlock Text="14:39"
+                                       FontSize="10"
+                                       Foreground="Black"
+                                       FontWeight="Bold"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Center"
+                                       Margin="0 10 0 0"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical"
+                                    Grid.Row="1"
+                                    Grid.Column="1"
+                                    VerticalAlignment="Center">
+                            <TextBlock Text="September 21th,2022"
+                                       FontSize="13"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Center"
+                                       Foreground="Gray"/>
+                            <TextBlock Text="15:39"
+                                       FontSize="10"
+                                       Foreground="Black"
+                                       FontWeight="Bold"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Center"
+                                       Margin="0 10 0 0"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical"
+                                    Grid.Row="2"
+                                    Grid.Column="1"
+                                    VerticalAlignment="Center">
+                            <TextBlock Text="September 23th,2022"
+                                       FontSize="13"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Center"
+                                       Foreground="Gray"/>
+                            <TextBlock Text="16:39"
+                                       FontSize="10"
+                                       Foreground="Black"
+                                       FontWeight="Bold"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Center"
+                                       Margin="0 10 0 0"/>
+                        </StackPanel>
+                        <pu:Switch Grid.Column="2"
+                                   Grid.Row="2"
+                                   BoxWidth="50"
+                                   BoxHeight="20"
+                                   Margin="5 0 0 0"
+                                   Background="#edeff5"
+                                   BorderThickness="0"
+                                   CheckedBackground="#4e8af2"
+                                   ToggleShadowColor="{x:Null}"
+                                   ToggleSize="16"/>
+                    </Grid>
+                </GroupBox>
+                <GroupBox Background="Transparent"
+                          Grid.Column="1"
+                          BorderThickness="0"
+                          pu:GroupBoxHelper.HeaderSeparatorVisibility="Collapsed"
+                          Header="Subject Status"
+                          pu:GroupBoxHelper.HeaderFontSize="16">
+                </GroupBox>
+                <GroupBox Background="Transparent"
+                          Grid.Column="2"
+                          BorderThickness="0"
+                          pu:GroupBoxHelper.HeaderSeparatorVisibility="Collapsed"
+                          Header="Class Status"
+                          pu:GroupBoxHelper.HeaderFontSize="16">
+                </GroupBox>
+            </Grid>
+        </Grid>
     </Grid>
 </pu:WindowX>
