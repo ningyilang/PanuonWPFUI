@@ -173,7 +173,8 @@
                             pu:DropDownHelper.Width="200"
                             pu:DropDownHelper.Height="200"
                             pu:DropDownHelper.Placement="BottomLeft"
-                            pu:DropDownHelper.VerticalOffset="5">
+                            pu:DropDownHelper.VerticalOffset="5"
+                            pu:DropDownHelper.HorizontalOffset="-20">
                     <pu:DropDown.Content>
                         <ToggleButton Background="Transparent"
                                       Foreground="White"
