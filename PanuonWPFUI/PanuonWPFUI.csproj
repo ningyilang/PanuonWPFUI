@@ -5,6 +5,9 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="Image\Icon.jpg" />
+    <None Remove="Image\Icon2.jpg" />
+    <None Remove="Image\tiger.jpeg" />
     <None Remove="Image\UI.png" />
     <None Remove="Resource\lion.png" />
   </ItemGroup>
@@ -13,6 +16,9 @@
     <PackageReference Include="Prism.DryIoc" Version="8.1.97" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Image\Icon.jpg" />
+    <Resource Include="Image\Icon2.jpg" />
+    <Resource Include="Image\tiger.jpeg" />
     <Resource Include="Image\UI.png" />
     <Resource Include="Resource\lion.png" />
   </ItemGroup>

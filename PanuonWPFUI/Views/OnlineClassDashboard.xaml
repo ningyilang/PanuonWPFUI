@@ -208,10 +208,10 @@
                         </Style>
                     </ComboBox.ItemContainerStyle>
                     <ComboBoxItem Content="items1" >
-                        
+
                     </ComboBoxItem>
                     <ComboBoxItem Content="items2">
-                       
+
                     </ComboBoxItem>
                 </ComboBox>
             </Grid>
@@ -260,7 +260,7 @@
                              pu:ShadowHelper.Opacity="0.5"
                              ScrollViewer.VerticalScrollBarVisibility="Disabled"
                              ScrollViewer.HorizontalScrollBarVisibility="Hidden" d:ItemsSource="{d:SampleData ItemCount=5}">
-                        
+
                         <ListBox.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <StackPanel Orientation="Horizontal" />
@@ -316,7 +316,7 @@
                                                             </TextBlock.RenderTransform>
                                                         </TextBlock>
                                                     </Grid>
-                                                    
+
                                                     <Button Background="White"
                                                         Foreground="#7947f6"
                                                         Width="25"
@@ -420,7 +420,7 @@
                                                         Content="{Binding content.Icon3}"
                                                         />
                                                     </StackPanel>
-                                                    
+
                                                 </Grid>
                                             </Grid>
                                             <DataTemplate.Triggers>
@@ -435,7 +435,7 @@
                                                     <Setter TargetName="GridTemplate2" Property="Visibility" Value="Collapsed"/>
                                                 </DataTrigger>
                                             </DataTemplate.Triggers>
-                                           
+
                                         </DataTemplate>
                                     </Setter.Value>
                                 </Setter>
