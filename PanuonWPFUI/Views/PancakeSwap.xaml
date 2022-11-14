@@ -5,9 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PanuonWPFUI.Views"
         xmlns:pu="clr-namespace:Panuon.WPF.UI;assembly=Panuon.WPF.UI"
+        xmlns:prism="http://prismlibrary.com/"
+        prism:ViewModelLocator.AutoWireViewModel="True"
         mc:Ignorable="d"
         Background="#29263D"
-        Title="PancakeSwap" Height="650" Width="1080"
+        Padding="0 30"
+        Title="PancakeSwap" Height="800" Width="1080"
         Foreground="White"
          pu:WindowXCaption.Buttons="None"
          pu:WindowXCaption.Height="50">
@@ -204,6 +207,383 @@
         </DataTemplate>
     </pu:WindowXCaption.HeaderTemplate>
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="80"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <Button Background="Transparent"
+                    Content="&#xe941;"
+                    Foreground="White"
+                    Height="40"
+                    Width="40"
+                    FontSize="18"
+                    FontFamily="{StaticResource PanuonIconFont}"
+                    pu:ButtonHelper.HoverBackground="Transparent"
+                    pu:ButtonHelper.HoverForeground="OrangeRed"/>
+            <StackPanel Orientation="Vertical"
+                        Grid.Row="1"
+                        Margin="0 10 0 10">
+                <ListBox Background="#432a49"
+                         BorderThickness="0"
+                         Width="45"
+                         Margin="0 15 0 15"
+                         HorizontalAlignment="Center"
+                         HorizontalContentAlignment="Center"
+                         VerticalContentAlignment="Center"
+                         pu:ListBoxHelper.ItemsHeight="30"
+                         pu:ListBoxHelper.ItemsWidth="30"
+                         pu:ListBoxHelper.ItemsHoverBackground="#bf6389"
+                         pu:ListBoxHelper.ItemsHoverForeground="OrangeRed"
+                         pu:ListBoxHelper.ItemsSelectedBackground="#902F5E"
+                         pu:ListBoxHelper.ItemsCornerRadius="15"
+                         pu:ListBoxHelper.CornerRadius="22.5"
+                         pu:ListBoxHelper.ItemsMargin="5"
+                         Foreground="White"
+                         FontSize="15"
+                         FontFamily="{StaticResource PanuonIconFont}">
+                    <ListBoxItem Content="&#xe942;"                                
+                                 IsSelected="True"/>
+                    <ListBoxItem Content="&#xe943;"                                                                            
+                                />
+                    <ListBoxItem Content="&#xe944;"                                                                                                                                                             
+                                 />
+                    <ListBoxItem Content="&#xe945;"                                                                                            
+                                />
+                </ListBox>
+                <ListBox Background="#31285B"
+                         BorderThickness="0"
+                         Width="45"
+                         Margin="0 15 0 15"
+                         HorizontalAlignment="Center"
+                         HorizontalContentAlignment="Center"
+                         VerticalContentAlignment="Center"
+                         pu:ListBoxHelper.ItemsHeight="30"
+                         pu:ListBoxHelper.ItemsWidth="30"
+                         pu:ListBoxHelper.ItemsHoverBackground="#8C4Cc2"
+                         pu:ListBoxHelper.ItemsHoverForeground="OrangeRed"
+                         pu:ListBoxHelper.ItemsSelectedBackground="#6C3CD3"
+                         pu:ListBoxHelper.ItemsCornerRadius="15"
+                         pu:ListBoxHelper.CornerRadius="22.5"
+                         pu:ListBoxHelper.ItemsMargin="5"
+                         Foreground="White"
+                         FontSize="15"
+                         FontFamily="{StaticResource PanuonIconFont}">
+                    <ListBoxItem Content="&#xe942;"                                
+                                 IsSelected="True"/>
+                    <ListBoxItem Content="&#xe943;"                                                                            
+                                />
+                    <ListBoxItem Content="&#xe944;"                                                                                                                                                             
+                                 />
+                    <ListBoxItem Content="&#xe945;"                                                                                            
+                                />
+                </ListBox>
+            </StackPanel>
+            <StackPanel Orientation="Vertical"
+                        Margin="10"
+                        Grid.Row="3">
+                <Button Content="&#xe956;"
+                        FontFamily="{StaticResource PanuonIconFont}"
+                        Height="40"
+                        Width="40"
+                        Margin="0 10 0 10"
+                        Foreground="White"
+                        FontSize="18"
+                        pu:ButtonHelper.HoverBackground="Transparent"
+                        pu:ButtonHelper.HoverForeground="OrangeRed"
+                        Background="Transparent"/>
+                <Button Content="&#xe957;"
+                        FontFamily="{StaticResource PanuonIconFont}"
+                        Height="40"
+                        Width="40"
+                        Margin="0 10 0 10"
+                        Foreground="White"
+                        FontSize="18"
+                        pu:ButtonHelper.HoverBackground="Transparent"
+                        pu:ButtonHelper.HoverForeground="OrangeRed"
+                        Background="Transparent"/>
+            </StackPanel>
+            <ToggleButton Content="&#xe960;"
+                        FontFamily="{StaticResource PanuonIconFont}"
+                        Height="40"
+                        Width="40"
+                        Margin="0 10 0 10"
+                        Foreground="White"
+                        FontSize="18"
+                        pu:ToggleButtonHelper.CheckedForeground="OrangeRed"
+                        pu:ToggleButtonHelper.HoverForeground="Gold"
+                        Background="Transparent"
+                        Grid.Row="4"/>
+        </Grid>
+        <Grid Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.8*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Border Height="50"
+                            Width="50"
+                            Margin="10"
+                            CornerRadius="25">
+                        <Border.Background>
+                            <ImageBrush ImageSource="/Image/Icon2.jpg"/>
+                        </Border.Background>
+                    </Border>
+                    <StackPanel Orientation="Vertical"
+                                Grid.Column="1"
+                                VerticalAlignment="Center">
+                        <TextBlock 
+                                   FontSize="20"
+                                   Margin="10"
+                                   VerticalAlignment="Center"
+                                   >
+                            <Run Text="BSC"
+                                 Foreground="Gray"/>
+                            <Run Text="/Cake"
+                                 FontWeight="Bold"/>
+                        </TextBlock>
+                        <TextBlock Text="PancakeSwap Token"
+                                   FontSize="15"
+                                  Margin="10 0 0 5"
+                                   Foreground="LightGray"
+                                   VerticalAlignment="Center"
+                                   FontWeight="DemiBold"/>
 
+                    </StackPanel>
+                    <Button Content="&#xe990;"
+                            FontFamily="{StaticResource PanuonIconFont}"
+                             Height="40"
+                            Width="40"
+                            Margin="10"
+                            Foreground="White"
+                            FontSize="18"
+                            BorderThickness="1"
+                            BorderBrush="#aaaaaa"
+                            pu:ButtonHelper.HoverBackground="#11ffffff"
+                            pu:ButtonHelper.HoverForeground="OrangeRed"
+                            Background="Transparent"
+                            Grid.Column="2"
+                            pu:ButtonHelper.CornerRadius="5"
+                            />
+                </Grid>
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="auto"/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Orientation="Horizontal">
+                        <Button Content="&#xe970;"
+                            FontFamily="{StaticResource PanuonIconFont}"
+                             Height="40"
+                            Width="40"
+                            Margin="10"
+                            Foreground="White"
+                            FontSize="18"                          
+                            pu:ButtonHelper.HoverBackground="{x:Null}"
+                            pu:ButtonHelper.HoverForeground="OrangeRed"
+                            Background="Transparent"
+                            Grid.Column="2"
+                            pu:ButtonHelper.CornerRadius="5"                           
+                            >
+                            <Button.Style>
+                                <Style TargetType="Button"
+                                       BasedOn="{StaticResource {x:Type Button}}"
+                                      >
+                                    <Setter Property="BorderThickness" Value="0"/>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="RenderTransform">
+                                                <Setter.Value>
+                                                    <ScaleTransform ScaleX="1.2"
+                                                                    ScaleY="1.2"
+                                                                    CenterX="20"
+                                                                    CenterY="20"/>
+                                                </Setter.Value>
+                                            </Setter>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+                        </Button>
+                        <Button Content="&#xe971;"
+                            FontFamily="{StaticResource PanuonIconFont}"
+                            Height="40"
+                            Width="40"
+                            Margin="10"
+                            Foreground="White"
+                            FontSize="18"                          
+                            pu:ButtonHelper.HoverBackground="{x:Null}"
+                            pu:ButtonHelper.HoverForeground="OrangeRed"
+                            Background="Transparent"
+                            Grid.Column="1"
+                            pu:ButtonHelper.CornerRadius="5"                          
+                            >
+                            <Button.Style>
+                                <Style TargetType="Button"
+                                       BasedOn="{StaticResource {x:Type Button}}"
+                                      >
+                                    <Setter Property="BorderThickness" Value="0"/>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="RenderTransform">
+                                                <Setter.Value>
+                                                    <ScaleTransform ScaleX="1.2"
+                                                                    ScaleY="1.2"
+                                                                    CenterX="20"
+                                                                    CenterY="20"/>
+                                                </Setter.Value>
+                                            </Setter>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+                        </Button>
+                        <ToggleButton Content="&#xe941;"
+                                     FontFamily="{StaticResource PanuonIconFont}"
+                                    Height="40"
+                                    Width="40"
+                                    Margin="10"
+                                    Foreground="White"
+                                    FontSize="18"
+                                    pu:ToggleButtonHelper.HoverBackground="{x:Null}"
+                                    pu:ToggleButtonHelper.HoverForeground="OrangeRed"
+                                    pu:ToggleButtonHelper.CheckedForeground="Gold"
+                                    pu:ToggleButtonHelper.CheckedContent="&#xe942;"
+                                    Background="Transparent"
+                                    Grid.Column="2"
+                                    >
+                            <ToggleButton.Style>
+                                <Style TargetType="ToggleButton" BasedOn="{StaticResource {x:Type ToggleButton}}">
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="RenderTransform">
+                                                <Setter.Value>
+                                                    <ScaleTransform ScaleX="1.2"
+                                                                    ScaleY="1.2"
+                                                                    CenterX="20"
+                                                                    CenterY="20"/>
+                                                </Setter.Value>
+                                            </Setter>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </ToggleButton.Style>
+                        </ToggleButton>
+                    </StackPanel>
+                    <Button Content="TRADE"                          
+                            Height="40"
+                            Width="100"
+                            Margin="10"
+                            Foreground="White"
+                            FontSize="18"
+                            BorderThickness="1"
+                            BorderBrush="#C87771"
+                            pu:ButtonHelper.HoverBackground="#C87771"
+                            pu:ButtonHelper.HoverForeground="Gold"
+                            Background="Transparent"
+                            Grid.Column="2"
+                            FontWeight="Bold"
+                            Padding="10 0"
+                            pu:ButtonHelper.CornerRadius="5"
+                            />
+                </Grid>
+                <TextBlock  
+                            FontSize="30"                         
+                            Margin="20 30 0  10"
+                            Grid.Row="2"
+                            FontWeight="Bold">
+                    <Run Text="983.4795"/>
+                    <Run Text="$"
+                         FontSize="15"
+                         />
+                </TextBlock>
+                <ItemsControl Grid.Row="3"
+                              x:Name="IcItems">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <UniformGrid Columns="2"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Margin="10"
+                                 >
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="auto"/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <Border Grid.ColumnSpan="2"
+                                        CornerRadius="10"
+                                        Background="#3A3854">
+                                    
+                                </Border>
+                                <Border CornerRadius="8"
+                                        Width="40"
+                                        Opacity="0.2"
+                                        Margin="10"
+                                        Background="{Binding AccentBrush}">
+                                    <TextBlock Text="{Binding Icon}"
+                                               FontSize="25"
+                                               FontFamily="{StaticResource PanuonIconFont}"
+                                               VerticalAlignment="Center"
+                                               HorizontalAlignment="Center"/>
+                                </Border>
+                                <StackPanel Orientation="Vertical"
+                                            Grid.Column="1"
+                                            Margin="10 10 10 10">
+                                    <TextBlock Foreground="LightGray"
+                                               Text="{Binding DisplayName}"
+                                               Margin="0 5 0 5"/>
+                                    <TextBlock Foreground="White"
+                                               Margin="0 5 0 5"
+                                               Text="{Binding Value}"/>
+                                </StackPanel>
+                            </Grid>
+                        </DataTemplate>
+                        
+                    </ItemsControl.ItemTemplate>
+                    <ItemsControl.ItemContainerStyle>
+                        <Style>
+                           
+                            <Style.Triggers>
+                                <Trigger Property="Control.IsMouseOver" Value="True">
+                                    <Setter Property="Control.RenderTransformOrigin" Value="0.5,0.5"/>
+                                    <Setter Property="Control.RenderTransform">
+                                        <Setter.Value>
+                                            <ScaleTransform ScaleX="1.2"
+                                                            ScaleY="1.2"/>
+                                            
+                                        </Setter.Value>
+                                    </Setter>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </ItemsControl.ItemContainerStyle>
+                </ItemsControl>
+            </Grid>
+        </Grid>
     </Grid>
 </pu:WindowX>
