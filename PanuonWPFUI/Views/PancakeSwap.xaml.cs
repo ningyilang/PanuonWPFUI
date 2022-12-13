@@ -29,6 +29,7 @@ namespace PanuonWPFUI.Views
             InitializeComponent();
             IcItems.ItemsSource = new ObservableCollection<Model>()
             {
+                //\u=&#x 转义字符Unicode
                 new Model()
                 {
                     DisplayName="Total Liquidity" ,
@@ -59,7 +60,33 @@ namespace PanuonWPFUI.Views
                 },
 
             };
-            
+            IsbItems.ItemsSource = new ObservableCollection<Mode2>()
+            {
+                new Mode2()
+                {
+                    Property1="1111",
+                    Property2="2222",
+                    Property3="3333",
+                    Property4="4444",
+                    IsRaise=true,
+                },
+                 new Mode2()
+                {
+                    Property1="1111",
+                    Property2="2222",
+                    Property3="3333",
+                    Property4="4444",
+                    IsRaise=false
+                },
+                  new Mode2()
+                {
+                    Property1 = "1111",
+                    Property2 = "2222",
+                    Property3 = "3333",
+                    Property4 = "4444",
+                    IsRaise=true
+                 }
+           };
 
         }
 
@@ -99,5 +126,49 @@ namespace PanuonWPFUI.Views
             get { return _value; }
             set { _value = value; }
         }
+    }
+
+    public class Mode2 : NotifyPropertyChangedBase
+    {
+        private string property1;
+
+        public string Property1
+        {
+            get { return property1; }
+            set { property1 = value; }
+        }
+
+        private string property2;
+
+        public string Property2
+        {
+            get { return property2; }
+            set { property2 = value; }
+        }
+
+        private string property3;
+
+        public string Property3
+        {
+            get { return property3; }
+            set { property3 = value; }
+        }
+
+        private string property4;
+
+        public string Property4
+        {
+            get { return property4; }
+            set { property4 = value; }
+        }
+
+        private bool isRaise;
+
+        public bool IsRaise
+        {
+            get { return isRaise; }
+            set { isRaise = value; }
+        }
+
     }
 }

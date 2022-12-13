@@ -11,7 +11,7 @@ namespace PanuonWPFUI
     {
         protected override Window CreateShell()
         {
-            return Container.Resolve<PancakeSwap>();
+            return Container.Resolve<ProjectManagement>();
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)

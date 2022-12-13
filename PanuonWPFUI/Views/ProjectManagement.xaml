@@ -1,0 +1,209 @@
+﻿<pu:WindowX x:Class="PanuonWPFUI.Views.ProjectManagement"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PanuonWPFUI.Views"
+        mc:Ignorable="d"
+        xmlns:pu="clr-namespace:Panuon.WPF.UI;assembly=Panuon.WPF.UI"
+        Title="ProjectManagement" Height="700" Width="1080"
+        pu:WindowXCaption.Buttons="None">
+    <pu:WindowXCaption.HeaderTemplate>
+        <DataTemplate></DataTemplate>
+    </pu:WindowXCaption.HeaderTemplate>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="80"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Border BorderThickness="0 0 1 0"
+                BorderBrush="#efefef"/>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="100"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="100"/>
+            </Grid.RowDefinitions>
+            <Image Source="/Image/Icon.jpg"
+                   Width="30"
+                   Height="30">
+                <Image.Clip>
+                    <EllipseGeometry Center="15,15"
+                                     RadiusX="15"
+                                     RadiusY="15"/>
+                </Image.Clip>
+            </Image>
+            <ListBox Grid.Row="1"
+                     x:Name="lsb"
+                     BorderThickness="0"
+                     pu:ListBoxHelper.ItemsHeight="70"
+                     HorizontalContentAlignment="Stretch"
+                     VerticalContentAlignment="Stretch"                   
+                     FontSize="25"
+                     Foreground="#c9d4e4"
+                     Background="Transparent"
+                     FontFamily="{StaticResource PanuonIconFont}"
+                     pu:ListBoxHelper.ItemsPadding="0"
+                     pu:ListBoxHelper.ItemsSelectedForeground="#3480f1"
+                     pu:ListBoxHelper.ItemsSelectedBackground="Transparent"
+                     pu:ListBoxHelper.ItemsHoverBackground="Transparent">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <ContentPresenter Content="{Binding}"
+                                              VerticalAlignment="Center"
+                                              HorizontalAlignment="Center"/>
+                            <Rectangle Width="3"
+                                       Fill="#3480f1"
+                                       Height="50"
+                                       HorizontalAlignment="Right"
+                                       x:Name="RectRibbon"
+                                       Visibility="Collapsed"
+                                      />
+                        </Grid>
+                        <DataTemplate.Triggers>
+                            <DataTrigger Binding="{Binding IsSelected,RelativeSource={RelativeSource AncestorType=ListBoxItem},Mode=OneWay}"
+                                         Value="True">
+                                <Setter TargetName="RectRibbon"
+                                        Property="Visibility"
+                                        Value="Visible"/>
+                            </DataTrigger>
+                        </DataTemplate.Triggers>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            <Button Grid.Row="3"
+                    FontFamily="{StaticResource PanuonIconFont}"
+                    Content="&#xe955;"
+                    Background="Transparent"
+                    pu:ButtonHelper.HoverBackground="{x:Null}"
+                   
+                    FontSize="25"
+                    BorderThickness="0"
+                    pu:ButtonHelper.HoverForeground="#3480f1">
+              
+            </Button>
+        </Grid>
+        <Grid Grid.Column="1">
+            <pu:CarouselPanel
+                Animation="Fade,Slide"
+                Orientation="Vertical"
+                AnimationDuration="0:0:0.2"
+                Margin="15"
+                CurrentIndex="{Binding SelectedIndex,ElementName=lsb}">
+                <Grid >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <Grid Height="100">
+                            <StackPanel Orientation="Vertical"
+                                        VerticalAlignment="Center">
+                                <TextBlock Text="Welcome Back,ALL!"
+                                           FontSize="25"
+                                           FontWeight="Bold"
+                                           Margin="10"/>
+                                <TextBlock Text="Let's DO best Today"
+                                           Margin="10"
+                                           Foreground="Gray"
+                                           FontSize="18"/>
+                            </StackPanel>
+                            <Grid Height="40"
+                                  Width="200"
+                                  HorizontalAlignment="Right">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition Width="auto"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBox Grid.ColumnSpan="2"
+                                           Background="#f7f7f7"
+                                           BorderThickness="0"
+                                         Padding="25 0"
+                                        pu:TextBoxHelper.CornerRadius="20"
+                                        pu:TextBoxHelper.WatermarkForeground="Gray"
+                                        pu:TextBoxHelper.Watermark="Search here"/>
+                                <Button Grid.Column="1"
+                                        FontFamily="{StaticResource PanuonIconFont}"
+                                        Content="&#xe955;"
+                                        Background="{x:Null}"
+                                        Padding="0 0 25 0"
+                                        FontSize="18"
+                                        pu:ButtonHelper.HoverForeground="Gold"/>
+                            </Grid>
+                        </Grid>
+                        <Rectangle Grid.Row="1"
+                                   Fill="#efefef"
+                                   Height="1"/>
+                        <GroupBox Grid.Row="2"
+                                  Header="Project Summary"
+                                  pu:GroupBoxHelper.HeaderFontWeight="Bold"
+                                  pu:GroupBoxHelper.HeaderFontSize="18"
+                                  pu:GroupBoxHelper.HeaderSeparatorVisibility="Collapsed"
+                                  pu:GroupBoxHelper.HeaderPadding="0 10"
+                                  BorderThickness="0">
+                            <pu:GroupBoxHelper.ExtendControl>
+                                <Button Content="See all Project"
+                                        Foreground="#3480f1"
+                                        Background="Transparent"
+                                        BorderThickness="0"
+                                        FontWeight="Bold"
+                                        Margin="0 0 10 0"
+                                        pu:IconHelper.FontFamily="{StaticResource PanuonIconFont}"
+                                        pu:IconHelper.FontSize="10"
+                                        pu:ButtonHelper.Icon="&#xe902;"
+                                        pu:IconHelper.Margin="5 0 0 0"
+                                        pu:ButtonHelper.IconPlacement="Right"
+                                        pu:ButtonHelper.HoverForeground="#3950f1"/>
+                            </pu:GroupBoxHelper.ExtendControl>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition />
+                                    <ColumnDefinition Width="20"/>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition Width="20"/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <pu:Card BorderThickness="0"
+                                         Background="#3480f1"
+                                         CornerRadius="10"
+                                         ShadowColor="#3480f1"
+                                         pu:ShadowHelper.BlurRadius="20"
+                                         pu:ShadowHelper.Opacity="0.5"
+                                         pu:ShadowHelper.ShadowDepth="10"
+                                         pu:ShadowHelper.Direction="330"/>
+                            </Grid>
+                        </GroupBox>
+                        <GroupBox Grid.Row="3"
+                                  Header="My Tasks"
+                                  pu:GroupBoxHelper.HeaderFontWeight="Bold"
+                                  pu:GroupBoxHelper.HeaderFontSize="18"
+                                  pu:GroupBoxHelper.HeaderSeparatorVisibility="Collapsed"
+                                  pu:GroupBoxHelper.HeaderPadding="0 10"
+                                  BorderThickness="0">
+                            
+                        </GroupBox>
+                    </Grid>
+                </Grid>
+                <Grid Background="#2200ff00">
+
+                </Grid>
+                <Grid Background="#220000ff">
+
+                </Grid>
+                <Grid Background="#22ff00ff">
+
+                </Grid>
+            </pu:CarouselPanel>
+           
+
+        </Grid>
+    </Grid>
+</pu:WindowX>
