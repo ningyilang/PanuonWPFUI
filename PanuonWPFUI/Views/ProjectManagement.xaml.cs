@@ -1,4 +1,5 @@
-﻿using Panuon.WPF.UI;
+﻿using Panuon.WPF;
+using Panuon.WPF.UI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,6 +31,41 @@ namespace PanuonWPFUI.Views
                 "\ue943",
                 "\ue944",
             };
+            lcHeaders.ItemsSource = new ObservableCollectionX<ItemsHeader>()
+            {
+                new ItemsHeader()
+                {
+                    ImageSource="/Image/Icon2.jpg",
+                },
+                new ItemsHeader()
+                {
+                    ImageSource="/Image/Icon2.jpg",
+                },
+                new ItemsHeader()
+                {
+                    ImageSource="/Image/Icon2.jpg",
+                },
+                new ItemsHeader()
+                {
+                    ExtendNumber=10
+                }               
+            };
+        }
+    }
+
+    public class ItemsHeader:NotifyPropertyChangedBase
+    {
+        private string _imageSource;
+        public string ImageSource
+        {
+           get=>_imageSource; set => Set(ref _imageSource,value);
+        }
+
+        private int _extendNumber;
+
+        public int ExtendNumber
+        {
+            get => _extendNumber;set=> Set(ref _extendNumber,value);
         }
     }
 }

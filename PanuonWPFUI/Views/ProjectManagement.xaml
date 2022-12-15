@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PanuonWPFUI.Views"
         mc:Ignorable="d"
-        xmlns:pu="clr-namespace:Panuon.WPF.UI;assembly=Panuon.WPF.UI"
+        xmlns:pu="clr-namespace:Panuon.WPF.UI;assembly=Panuon.WPF.UI"  
+        xmlns:purs="clr-namespace:Panuon.WPF.UI.Resources;assembly=Panuon.WPF.UI"
         Title="ProjectManagement" Height="700" Width="1080"
         pu:WindowXCaption.Buttons="None">
     <pu:WindowXCaption.HeaderTemplate>
@@ -47,13 +48,15 @@
                      pu:ListBoxHelper.ItemsPadding="0"
                      pu:ListBoxHelper.ItemsSelectedForeground="#3480f1"
                      pu:ListBoxHelper.ItemsSelectedBackground="Transparent"
-                     pu:ListBoxHelper.ItemsHoverBackground="Transparent">
+                     pu:ListBoxHelper.ItemsHoverBackground="Transparent"
+                    >
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <Grid>
                             <ContentPresenter Content="{Binding}"
                                               VerticalAlignment="Center"
-                                              HorizontalAlignment="Center"/>
+                                              HorizontalAlignment="Center"
+                                              />
                             <Rectangle Width="3"
                                        Fill="#3480f1"
                                        Height="50"
@@ -178,7 +181,195 @@
                                          pu:ShadowHelper.BlurRadius="20"
                                          pu:ShadowHelper.Opacity="0.5"
                                          pu:ShadowHelper.ShadowDepth="10"
-                                         pu:ShadowHelper.Direction="330"/>
+                                         pu:ShadowHelper.Direction="330">
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="auto"/>
+                                            <RowDefinition Height="*"/>
+                                            <RowDefinition Height="auto"/>
+                                        </Grid.RowDefinitions>
+                                        <Label Width="30"
+                                               Height="30"
+                                               Margin="15"
+                                               HorizontalAlignment="Left"
+                                               Background="#44ffffff"
+                                               pu:LabelHelper.CornerRadius="5"
+                                               FontFamily="{StaticResource PanuonIconFont}"
+                                               Content="&#xe945;"
+                                               VerticalContentAlignment="Center"
+                                               HorizontalContentAlignment="Center"
+                                               Foreground="White"/>
+                                        <TextBlock Text="12"
+                                                   FontSize="20"
+                                                   Foreground="White"
+                                                   FontWeight="Bold"
+                                                   Grid.Row="1"
+                                                   VerticalAlignment="Bottom"
+                                                   Margin="15 0"/>
+                                        <TextBlock Text="In progress&#13;Project"
+                                                   Grid.Row="2"
+                                                   Margin="15 10"
+                                                   Foreground="White"/>
+                                    </Grid>
+                                </pu:Card>
+                                <pu:Card BorderThickness="0"
+                                         Background="#363E5F"
+                                         CornerRadius="10"
+                                         ShadowColor="#3480f1"
+                                         pu:ShadowHelper.BlurRadius="20"
+                                         pu:ShadowHelper.Opacity="0.5"
+                                         pu:ShadowHelper.ShadowDepth="10"
+                                         pu:ShadowHelper.Direction="330"
+                                         Grid.Column="2">
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="auto"/>
+                                            <RowDefinition Height="*"/>
+                                            <RowDefinition Height="auto"/>
+                                        </Grid.RowDefinitions>
+                                        <Label Width="30"
+                                               Height="30"
+                                               Margin="15"
+                                               HorizontalAlignment="Left"
+                                               Background="#44ffffff"
+                                               pu:LabelHelper.CornerRadius="5"
+                                               FontFamily="{StaticResource PanuonIconFont}"
+                                               Content="&#xe945;"
+                                               VerticalContentAlignment="Center"
+                                               HorizontalContentAlignment="Center"
+                                               Foreground="White"/>
+                                        <TextBlock Text="12"
+                                                   FontSize="20"
+                                                   Foreground="White"
+                                                   FontWeight="Bold"
+                                                   Grid.Row="1"
+                                                   VerticalAlignment="Bottom"
+                                                   Margin="15 0"/>
+                                        <TextBlock Text="In progress&#13;Project"
+                                                   Grid.Row="2"
+                                                   Margin="15 10"
+                                                   Foreground="White"/>
+                                    </Grid>
+                                </pu:Card>
+                                <Grid Grid.Column="4">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="auto"/>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="auto"/>
+                                    </Grid.RowDefinitions>
+                                    <TextBlock Text="Team Member"
+                                               Foreground="#adb5c9"/>
+                                    <ItemsControl Grid.Row="1"
+                                                  x:Name="lcHeaders"
+                                                  Margin="0 20 0 20"
+                                                  VerticalAlignment="Top">
+                                        <ItemsControl.ItemsPanel>
+                                            <ItemsPanelTemplate>
+                                                <StackPanel Orientation="Horizontal"
+                                                            />
+                                            </ItemsPanelTemplate>
+                                        </ItemsControl.ItemsPanel>
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate>
+                                                <Border Height="40"
+                                                        Width="40"
+                                                        CornerRadius="20"
+                                                        BorderThickness="2"
+                                                        BorderBrush="gold"
+                                                        Margin="-5 0"
+                                                        x:Name="borderHeader"
+                                                        RenderOptions.BitmapScalingMode="HighQuality">
+                                                    <Border.Effect>
+                                                        <DropShadowEffect BlurRadius="20"
+                                                                           ShadowDepth="10"
+                                                                           Direction="270"
+                                                                          Opacity="0.5"/>
+                                                    </Border.Effect>
+                                                    <Border.Background>
+                                                        <ImageBrush ImageSource="{Binding ImageSource}"
+                                                                    />
+                                                    </Border.Background>
+                                                    <Label Content="{Binding ExtendNumber,StringFormat='+0'}"
+                                                               Visibility="Collapsed"
+                                                               x:Name="TxtExtendNumber"
+                                                               Width="40"
+                                                               Height="40"
+                                                               pu:LabelHelper.CornerRadius="20"
+                                                               VerticalAlignment="Stretch"
+                                                               HorizontalAlignment="Stretch"
+                                                               HorizontalContentAlignment="Center"
+                                                               VerticalContentAlignment="Center"
+                                                               Background="gold"/> 
+                                                </Border>
+                                                <DataTemplate.Triggers>
+                                                    <DataTrigger Binding="{Binding ImageSource,Converter={StaticResource {x:Static purs:ConverterKeys.IsNullConverter}}}"
+                                                                 Value="True">
+                                                        <Setter TargetName="TxtExtendNumber"
+                                                                Property="Visibility"
+                                                                Value="Visible"/>
+                                                        <Setter TargetName="borderHeader"
+                                                                Property="Background"
+                                                                Value="{x:Null}"/>
+                                                        <Setter TargetName="borderHeader"
+                                                                Property="BorderThickness"
+                                                                Value="0"/>
+                                                                
+                                                    </DataTrigger>
+                                                </DataTemplate.Triggers>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+                                    <pu:Card BorderThickness="0"
+                                         Background="White"
+                                         CornerRadius="10"
+                                         Grid.Row="2"
+                                         ShadowColor="#3480f1"
+                                         pu:ShadowHelper.BlurRadius="20"
+                                         pu:ShadowHelper.Opacity="0.5"
+                                         pu:ShadowHelper.ShadowDepth="10"
+                                         pu:ShadowHelper.Direction="330">
+                                    <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="2*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <pu:RingProgressBar BorderBrush="#efefef"
+                                                                Height="60"
+                                                                Width="60"
+                                                                Foreground="#3480F1"
+                                                                Minimum="0"
+                                                                Maximum="100"
+                                                                Value="75"
+                                                                BorderThickness="5"/>
+                                            <Grid Grid.Column="1">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="auto"/>
+                                                    <RowDefinition Height="*"/>
+                                                </Grid.RowDefinitions>
+                                                <TextBlock Text="Working Time"
+                                                           Foreground="#B1B9D2"
+                                                           Margin="10"
+                                                           FontSize="15"/>
+                                                <TextBlock Text="135H"
+                                                           Margin="10"
+                                                           Grid.Row="1"
+                                                           FontWeight="Bold"
+                                                           FontSize="30"/>
+                                            </Grid>
+                                        <!--<TextBlock Text="12"
+                                                   FontSize="20"
+                                                   Foreground="White"
+                                                   FontWeight="Bold"
+                                                   Grid.Row="1"
+                                                   VerticalAlignment="Bottom"
+                                                   Margin="15 0"/>
+                                        <TextBlock Text="In progress&#13;Project"
+                                                   Grid.Row="2"
+                                                   Margin="15 10"
+                                                   Foreground="White"/>-->
+                                    </Grid>
+                                </pu:Card>
+                                </Grid>
                             </Grid>
                         </GroupBox>
                         <GroupBox Grid.Row="3"

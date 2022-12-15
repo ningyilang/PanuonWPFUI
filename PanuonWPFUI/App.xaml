@@ -8,6 +8,7 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="pack://application:,,,/Panuon.WPF.UI;component/Control.xaml" />
+                
                 <ResourceDictionary>
                     <pu:GlobalSettings x:Key="setting"
                                        IconFontFamily="{StaticResource PanuonIconFont}"
