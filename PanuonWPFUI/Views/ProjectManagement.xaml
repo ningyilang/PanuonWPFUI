@@ -908,7 +908,7 @@
                                                         <ImageBrush ImageSource="{Binding HeadImage}"/>
                                                     </Border.Background>
                                                 </Border>
-                                                <!--<Label Content="{Icon:Material Kind=Link, Height=8,Width=8}"
+                                                <Label Content="{Icon:Material Kind=Link, Height=8,Width=8}"
                                                       Height="20"
                                                       Width="20"
                                                       pu:LabelHelper.CornerRadius="10"
@@ -917,23 +917,8 @@
                                                        HorizontalAlignment="Right"
                                                        Margin="35 0 0 0"
                                                        BorderThickness="1"
-                                                       BorderBrush="Goldenrod"/>-->
-                                                <pu:Badge Width="10"
-                                                      Height="10"
-                                                      IsWaving="True"
-                                                      WaveBrush="Goldenrod"
-                                                      WaveScale="2"
-                                                      WaveThickness="5"
-                                                      HorizontalAlignment="Right"
-                                                      VerticalAlignment="Top"
-                                                      BorderThickness="1"
-                                                      HoverBorderBrush="Goldenrod"
-                                                      Content="{Icon:Material Kind=Link, Height=8,Width=8}"
-                                                      CornerRadius="5"                                         
-                                                      pu:ShadowColor="Red"
-                                                      pu:ShadowHelper.BlurRadius="20"
-                                                      pu:ShadowHelper.Direction="270"
-                                                      pu:ShadowHelper.Opacity="0.2"/>
+                                                       BorderBrush="Goldenrod"/>
+                                                
                                             </Grid>
                                             
                                             <Rectangle Stroke="#efefef"
