@@ -12,6 +12,7 @@
     <None Remove="Resource\lion.png" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="MahApps.Metro.IconPacks" Version="4.11.0" />
     <PackageReference Include="Panuon.WPF.UI" Version="1.1.6.5" />
     <PackageReference Include="Prism.DryIoc" Version="8.1.97" />
   </ItemGroup>

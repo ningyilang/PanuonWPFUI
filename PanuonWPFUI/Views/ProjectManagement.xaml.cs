@@ -50,6 +50,44 @@ namespace PanuonWPFUI.Views
                     ExtendNumber=10
                 }               
             };
+
+            IcActivity.ItemsSource = new ObservableCollectionX<ItemsActivity>()
+            {
+                new ItemsActivity()
+                {
+                    HeadImage="/Image/Icon2.jpg",
+                    DisPlayName="Tom",
+                    DisPlayTime=DateTime.Now  
+                },
+                new ItemsActivity()
+                {
+                    HeadImage="/Image/Icon2.jpg",
+                    DisPlayName="Lucy",
+                    DisPlayTime=DateTime.Now
+                }
+            };
+        }
+
+        private void btnMin_Click(object sender, RoutedEventArgs e)
+        {
+            WindowState= WindowState.Minimized; 
+        }
+
+        private void btnMax_Click(object sender, RoutedEventArgs e)
+        {
+            if(WindowState==WindowState.Maximized)
+            { 
+                WindowState= WindowState.Normal;
+            }
+            else
+            {
+                WindowState= WindowState.Maximized;    
+            }
+        }
+
+        private void btnClose_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 
@@ -68,4 +106,27 @@ namespace PanuonWPFUI.Views
             get => _extendNumber;set=> Set(ref _extendNumber,value);
         }
     }
+
+    public class ItemsActivity : NotifyPropertyChangedBase
+    {
+        private string _headImage;
+        public string HeadImage
+        {
+            get => _headImage; set => Set(ref _headImage, value);
+        }
+
+        private string _disPlayName;
+        public string DisPlayName
+        {
+            get => _disPlayName; set => Set(ref _disPlayName, value);
+        }
+
+        private DateTime _disPlayTime;
+        public DateTime DisPlayTime
+        {
+            get => _disPlayTime; set => Set(ref _disPlayTime, value);
+        }
+    }
+
+
 }

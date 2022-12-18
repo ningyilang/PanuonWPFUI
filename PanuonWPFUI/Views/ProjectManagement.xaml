@@ -7,10 +7,48 @@
         mc:Ignorable="d"
         xmlns:pu="clr-namespace:Panuon.WPF.UI;assembly=Panuon.WPF.UI"  
         xmlns:purs="clr-namespace:Panuon.WPF.UI.Resources;assembly=Panuon.WPF.UI"
-        Title="ProjectManagement" Height="700" Width="1080"
+        Title="ProjectManagement" Height="800" Width="1080"
+        xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
+        pu:WindowXCaption.Height="60"
         pu:WindowXCaption.Buttons="None">
+    <Window.Resources>
+        <Style x:Key="headerButton" TargetType="{x:Type ButtonBase}"
+              >
+            <Setter Property="Width" Value="50"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="Background" Value="{x:Null}"/>
+            <Setter Property="Margin" Value="5"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Foreground" Value="Red"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
     <pu:WindowXCaption.HeaderTemplate>
-        <DataTemplate></DataTemplate>
+        <DataTemplate>
+            <Grid>
+                <StackPanel Orientation="Horizontal"
+                           HorizontalAlignment="Right"
+                           Margin="10 0 0 10">
+                    <Button Content="{Icon:Material Kind=WindowMinimize}" 
+                                      Style="{StaticResource headerButton}" 
+                                      x:Name="btnMin" Click="btnMin_Click"
+                                      WindowChrome.IsHitTestVisibleInChrome="True" />
+                    <Button Content="{Icon:Material Kind=WindowMaximize}" 
+                                     x:Name="btnMax" Click="btnMax_Click"
+                                     Style="{StaticResource headerButton}"                  
+                                     WindowChrome.IsHitTestVisibleInChrome="True" />
+                    <Button Content="{Icon:Material Kind=WindowClose}" 
+                                    Style="{StaticResource headerButton}"  
+                                    x:Name="btnClose" Click="btnClose_Click"
+                                    WindowChrome.IsHitTestVisibleInChrome="True" 
+                                    ToolTip="关闭"
+                                   />
+                </StackPanel>
+            </Grid>
+        </DataTemplate>
     </pu:WindowXCaption.HeaderTemplate>
     <Grid>
         <Grid.ColumnDefinitions>
@@ -104,7 +142,9 @@
                         <Grid.RowDefinitions>
                             <RowDefinition Height="auto"/>
                             <RowDefinition Height="auto"/>
-                            <RowDefinition />
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="80"/>
+                            <RowDefinition Height="auto"/>
                             <RowDefinition />
                         </Grid.RowDefinitions>
                         <Grid Height="100">
@@ -134,8 +174,8 @@
                                         pu:TextBoxHelper.WatermarkForeground="Gray"
                                         pu:TextBoxHelper.Watermark="Search here"/>
                                 <Button Grid.Column="1"
-                                        FontFamily="{StaticResource PanuonIconFont}"
-                                        Content="&#xe955;"
+                                        
+                                        Content="{Icon:Zondicons Kind=Search}"
                                         Background="{x:Null}"
                                         Padding="0 0 25 0"
                                         FontSize="18"
@@ -277,7 +317,7 @@
                                                         BorderThickness="2"
                                                         BorderBrush="gold"
                                                         Margin="-5 0"
-                                                        x:Name="borderHeader"
+                                                        x:Name="borderHeader"                                                      
                                                         RenderOptions.BitmapScalingMode="HighQuality">
                                                     <Border.Effect>
                                                         <DropShadowEffect BlurRadius="20"
@@ -314,6 +354,16 @@
                                                                 Property="BorderThickness"
                                                                 Value="0"/>
                                                                 
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding ElementName=borderHeader,Path=IsMouseOver}"
+                                                                 Value="True">
+                                                        <Setter Property="RenderTransformOrigin" Value="0.5,0.5"/>
+                                                        <Setter Property="RenderTransform">
+                                                            <Setter.Value>
+                                                                <ScaleTransform ScaleX="1.1"
+                                                                                ScaleY="1.1"/>
+                                                            </Setter.Value>
+                                                        </Setter>
                                                     </DataTrigger>
                                                 </DataTemplate.Triggers>
                                             </DataTemplate>
@@ -372,15 +422,547 @@
                                 </Grid>
                             </Grid>
                         </GroupBox>
-                        <GroupBox Grid.Row="3"
-                                  Header="My Tasks"
+                        <!--<GroupBox Grid.Row="3"                                 
                                   pu:GroupBoxHelper.HeaderFontWeight="Bold"
                                   pu:GroupBoxHelper.HeaderFontSize="18"
                                   pu:GroupBoxHelper.HeaderSeparatorVisibility="Collapsed"
                                   pu:GroupBoxHelper.HeaderPadding="0 10"
                                   BorderThickness="0">
                             
-                        </GroupBox>
+                        </GroupBox>-->
+                        <TextBlock Text="My Task"
+                                   Grid.Row="3"
+                                   FontWeight="Bold"
+                                   FontSize="16"
+                                   Margin="20 30 0 10"/>
+                        <TabControl Grid.Row="4"
+                                    Margin="20 0"
+                                    BorderThickness="0"
+                                    pu:TabControlHelper.ItemsHeight="40"
+                                    pu:TabControlHelper.ItemsForeground="gray"
+                                    pu:TabControlHelper.ItemsFontSize="15"
+                                    pu:TabControlHelper.ItemsPadding="0 0 15 0"
+                                    pu:TabControlHelper.ItemsBackground="Transparent"
+                                    pu:TabControlHelper.ItemsHoverBackground="{x:Null}"
+                                    pu:TabControlHelper.ItemsSelectedBackground="{x:Null}"
+                                    pu:TabControlHelper.ItemsSelectedForeground="#3480f1"
+                                    pu:TabControlHelper.HeaderPanelBorderThickness="0 0 0 1"
+                                    pu:TabControlHelper.HeaderPanelBorderBrush="#efefef"
+                                    pu:TabControlHelper.ItemsSelectedRibbonLineThickness="2"
+                                    pu:TabControlHelper.ItemsSelectedRibbonLineBrush="#3480f1"
+                                    pu:TabControlHelper.ItemsRibbonLinePlacement="Bottom"
+                                    pu:TabControlHelper.ItemsRibbonLineVisibility="Visible"
+                                    pu:TabControlHelper.HeaderPanelHorizontalAlignment="Stretch">
+                            <TabControl.ItemContainerStyle>
+                                <Style TargetType="TabItem"
+                                       BasedOn="{StaticResource {x:Type TabItem}}">
+                                    <Setter Property="FontWeight" Value="Bold"/>
+                                   
+                                </Style>
+                            </TabControl.ItemContainerStyle>
+                            <pu:TabControlHelper.EndControl 
+                                >
+                                <Button Background="#2E7DF3"
+                                        Margin="10 0 0 5"                                      
+                                        Foreground="White"
+                                        Height="40"
+                                        Width="120"                                      
+                                        pu:ButtonHelper.CornerRadius="20"
+                                        pu:ButtonHelper.HoverForeground="Gold"
+                                        WindowChrome.IsHitTestVisibleInChrome="True">
+                                    <!--<Style TargetType="Button" >
+                                        <Setter Property="Template" >
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="Button">
+                                                    <Grid>
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="auto"/>
+                                                            <ColumnDefinition/>
+                                                        </Grid.ColumnDefinitions>
+                                                        --><!--<Icon:PackIconIonicons Kind="AddMD" Margin="5 0"
+                                                                   />
+                                                        <TextBlock Text="Create" Margin="10 0"-->
+                                                       <!--Grid.Column="1" />--><!--
+                                                    </Grid>
+                                                </ControlTemplate>
+                                                
+                                            </Setter.Value>
+                                        </Setter>
+                                        <Setter Property="da"
+                                    </Style>-->
+                                    <Button.Content>
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="auto"/>
+                                                <ColumnDefinition/>
+                                            </Grid.ColumnDefinitions>
+                                            <Icon:PackIconIonicons Kind="AddMD" Margin="5 0">
+                                            </Icon:PackIconIonicons>
+                                                                  
+                                            <TextBlock Text="Create" Margin="10 0"
+                                                       Grid.Column="1" />
+                                        </Grid>
+                                    </Button.Content>
+                                </Button>
+                            </pu:TabControlHelper.EndControl>
+
+                            <TabItem Header="Active Task">
+                                <StackPanel Margin="0 0 0 15">
+                                    <pu:Card Height="80"
+                                             Margin="0 15 0 0"
+                                             BorderThickness="0"
+                                             Background="White"
+                                             CornerRadius="10"
+                                             ShadowColor="Gray"
+                                             pu:ShadowHelper.ShadowDepth="7"
+                                             pu:ShadowHelper.BlurRadius="25"
+                                             pu:ShadowHelper.Direction="270"
+                                             pu:ShadowHelper.Opacity="0.6">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="auto"/>
+                                                <ColumnDefinition/>
+                                                <ColumnDefinition Width="200"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Label Width="{Binding ActualHeight,RelativeSource={RelativeSource Self}}"
+                                                   Margin="10" pu:LabelHelper.CornerRadius="5" Background="#69d0cd"
+                                                   Content="{Icon:Material Kind=Home, Width=30, Height=30}"
+                                                   HorizontalContentAlignment="Center"
+                                                   VerticalContentAlignment="Center"
+                                                   Foreground="White"                                                   
+                                                   />
+                                            <StackPanel Grid.Column="1"
+                                                        Margin="15 0 0 0"
+                                                        VerticalAlignment="Center">
+                                                <TextBlock Text="Steak Project"
+                                                           Margin="0 0 0 10" />
+                                                <StackPanel Orientation="Horizontal">
+                                                    <Icon:PackIconMaterial Kind="Link" Foreground="Gray"/>
+                                                    <TextBlock Text="Design Brief" Margin="10 0 " Foreground="Gray"/>
+                                                    <Icon:PackIconMaterial Kind="Message" Foreground="Gray" Margin="20 0"/>
+                                                    <TextBlock Text="104 Comment" Margin="5 0" Foreground="Gray"/>
+                                                </StackPanel>
+                                                
+                                            </StackPanel>
+                                            <Grid Grid.Column="2" >
+                                                <StackPanel VerticalAlignment="Center" Margin="10 0 10 0">
+                                                    <StackPanel Orientation="Horizontal" Margin="5">
+                                                        <TextBlock Text="Progress" Foreground="Gray"/>
+                                                        <TextBlock Text="45%" Margin="10 0"
+                                                                   HorizontalAlignment="Right"/>
+                                                    </StackPanel>
+                                                    <ProgressBar Height="10" Foreground="#3480f1"
+                                                                 Background="#efefef" Value="45"
+                                                                 Margin="5"
+                                                                 pu:ProgressBarHelper.CornerRadius="5"/>
+                                                </StackPanel>
+                                                
+                                            </Grid>
+                                        </Grid>
+                                    </pu:Card>
+                                    <pu:Card Height="80"
+                                             Margin="0 15 0 35"
+                                             BorderThickness="0"
+                                             Background="White"
+                                             CornerRadius="10"
+                                             ShadowColor="Gray"
+                                             pu:ShadowHelper.ShadowDepth="7"
+                                             pu:ShadowHelper.BlurRadius="25"
+                                             pu:ShadowHelper.Direction="270"
+                                             pu:ShadowHelper.Opacity="0.6">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="auto"/>
+                                                <ColumnDefinition/>
+                                                <ColumnDefinition Width="200"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Label Width="{Binding ActualHeight,RelativeSource={RelativeSource Self}}"
+                                                   Margin="10" pu:LabelHelper.CornerRadius="5" Background="#FF9B82"
+                                                   Content="{Icon:Material Kind=Hamburger, Width=30, Height=30}"
+                                                   HorizontalContentAlignment="Center"
+                                                   VerticalContentAlignment="Center"
+                                                   Foreground="White"                                                   
+                                                   />
+                                            <StackPanel Grid.Column="1"
+                                                        Margin="15 0 0 0"
+                                                        VerticalAlignment="Center">
+                                                <TextBlock Text="Steak Project"
+                                                           Margin="0 0 0 10" />
+                                                <StackPanel Orientation="Horizontal">
+                                                    <Icon:PackIconMaterial Kind="Link" Foreground="Gray"/>
+                                                    <TextBlock Text="Design Brief" Margin="10 0 " Foreground="Gray"/>
+                                                    <Icon:PackIconMaterial Kind="Message" Foreground="Gray" Margin="20 0"/>
+                                                    <TextBlock Text="104 Comment" Margin="5 0" Foreground="Gray"/>
+                                                </StackPanel>
+
+                                            </StackPanel>
+                                            <Grid Grid.Column="2" >
+                                                <StackPanel VerticalAlignment="Center" Margin="10 0 10 0">
+                                                    <StackPanel Orientation="Horizontal" Margin="5">
+                                                        <TextBlock Text="Progress" Foreground="Gray"/>
+                                                        <TextBlock Text="45%" Margin="10 0"
+                                                                   HorizontalAlignment="Right"/>
+                                                    </StackPanel>
+                                                    <ProgressBar Height="10" Foreground="#3480f1"
+                                                                 Background="#efefef" Value="45"
+                                                                 Margin="5"
+                                                                 pu:ProgressBarHelper.CornerRadius="5"/>
+                                                </StackPanel>
+
+                                            </Grid>
+                                        </Grid>
+                                    </pu:Card>
+                                </StackPanel>
+                            </TabItem>
+                            <TabItem Header="Complated" >
+                                <!--<StackPanel >
+                                    <pu:Card Height="80"
+                                             Margin="0 15 0 0"
+                                             BorderThickness="0"
+                                             Background="White"
+                                             CornerRadius="10"
+                                             ShadowColor="Gray"
+                                             pu:ShadowHelper.ShadowDepth="7"
+                                             pu:ShadowHelper.BlurRadius="25"
+                                             pu:ShadowHelper.Direction="270"
+                                             pu:ShadowHelper.Opacity="0.6">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition/>
+                                                <ColumnDefinition/>
+                                            </Grid.ColumnDefinitions>
+                                        </Grid>
+                                    </pu:Card>
+                                    <pu:Card Height="80"
+                                             Margin="0 15 0 35"
+                                             BorderThickness="0"
+                                             Background="White"
+                                             CornerRadius="10"
+                                             ShadowColor="Gray"
+                                             pu:ShadowHelper.ShadowDepth="7"
+                                             pu:ShadowHelper.BlurRadius="25"
+                                             pu:ShadowHelper.Direction="270"
+                                             pu:ShadowHelper.Opacity="0.6">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition/>
+                                                <ColumnDefinition/>
+                                            </Grid.ColumnDefinitions>
+                                        </Grid>
+                                    </pu:Card>
+                                </StackPanel>-->
+                            </TabItem>
+                        </TabControl>
+                    </Grid>
+                    <Grid Grid.Column="1" Margin="20 0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid >
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="auto"/>
+                                    <ColumnDefinition Width="auto"/>
+                                    <ColumnDefinition Width="auto"/>
+                                </Grid.ColumnDefinitions>
+                                <Border Height="40"
+                                    Width="40"
+                                    CornerRadius="20"
+                                    BorderThickness="2"
+                                    BorderBrush="Gold"
+                                    RenderOptions.BitmapScalingMode="HighQuality"
+                                    >
+                                    <Border.Background>
+                                        <ImageBrush ImageSource="/Image/Icon2.jpg"/>
+                                    </Border.Background>
+                                </Border>
+                                <StackPanel Margin="15 0 0 0"  
+                                            Grid.Column="1"
+                                            VerticalAlignment="Center"
+                                            HorizontalAlignment="Right">
+                                    <TextBlock Text="ALI Husni" Margin="0 0 0 5" FontWeight="Bold"/>
+                                    <TextBlock Text="@ali husni" Foreground="Gray"/>
+                                </StackPanel>
+                            </Grid>
+                            <Grid Grid.Column="2"                                 
+                                  >
+                                <Button   Height="40"
+                                          Width="40"
+                                          Background="White"
+                                          pu:ButtonHelper.CornerRadius="20"
+                                          Content="{Icon:ForkAwesome Kind=Bell}"
+                                          pu:ButtonHelper.ShadowColor="LightGray"
+                                          pu:ShadowHelper.BlurRadius="20"
+                                          pu:ShadowHelper.Direction="270"
+                                          pu:ShadowHelper.Opacity="0.2"/>
+                                <pu:Badge Width="10"
+                                          Height="10"
+                                          IsWaving="True"
+                                          WaveBrush="#e65353"
+                                          WaveScale="2"
+                                          WaveThickness="5"
+                                          HorizontalAlignment="Right"
+                                          VerticalAlignment="Top"
+                                          BorderThickness="0"
+                                          HoverBorderBrush="#e65353"
+                                          Background="#e65353"
+                                          CornerRadius="5"                                         
+                                          pu:ShadowColor="Red"
+                                          pu:ShadowHelper.BlurRadius="20"
+                                          pu:ShadowHelper.Direction="270"
+                                          pu:ShadowHelper.Opacity="0.2"/>
+                            </Grid>
+                            
+                        </Grid>
+                        <Grid Grid.Row="1"
+                              Margin="0 50 0 0">
+                            <TextBlock Text="January 2022" FontWeight="Bold"
+                                       FontSize="25"/>
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center"
+                                        HorizontalAlignment="Right" Margin="10 0 10 0">
+                                <Button Height="25"
+                                        Width="25"
+                                        Margin="10 0 10 0"
+                                        pu:ButtonHelper.CornerRadius="12.5"
+                                        BorderThickness="1"
+                                        BorderBrush="LightGray"
+                                        Background="White"
+                                        Content="{Icon:ForkAwesome Kind=AngleLeft, Width=10 ,Height=10}"
+                                        pu:ShadowHelper.BlurRadius="10"
+                                        pu:ShadowHelper.Direction="270"
+                                        pu:ShadowHelper.ShadowDepth="1"
+                                        
+                                        pu:ButtonHelper.ShadowColor="LightGray"/>
+                                <Button Height="25"
+                                        Width="25"
+                                       
+                                        pu:ButtonHelper.CornerRadius="12.5"
+                                        BorderThickness="1"
+                                        BorderBrush="LightGray"
+                                        Background="White"
+                                        Content="{Icon:ForkAwesome Kind=AngleRight, Width=10 ,Height=10}"
+                                        pu:ShadowHelper.BlurRadius="10"
+                                        pu:ShadowHelper.Direction="270"
+                                        pu:ShadowHelper.ShadowDepth="1"
+                                        pu:ButtonHelper.ShadowColor="LightGray"/>
+                            </StackPanel>
+                        </Grid>
+                        <UniformGrid Columns="7" Margin="0 20 0 0"
+                                     Grid.Row="2">
+                            <TextBlock Text="Mon" Foreground="Gray"
+                                       Width="30"
+                                       VerticalAlignment="Center"/>
+                            <TextBlock Text="Tue" Foreground="Gray"
+                                       Width="30"
+                                       VerticalAlignment="Center"/>
+                            <TextBlock Text="Wed" Foreground="Gray"
+                                       Width="30"
+                                       VerticalAlignment="Center"/>
+                            <TextBlock Text="Thu" Foreground="Gray"
+                                       Width="30"
+                                       VerticalAlignment="Center"/>
+                            <TextBlock Text="Fri" Foreground="Gray"
+                                       Width="30"
+                                       VerticalAlignment="Center"/>
+                            <TextBlock Text="Sat" Foreground="Gray"
+                                       Width="30"
+                                       VerticalAlignment="Center"/>
+                            <TextBlock Text="Sun" Foreground="Gray"
+                                       Width="30"
+                                       VerticalAlignment="Center"/>
+                        </UniformGrid>
+                        <UniformGrid Columns="7" Margin="0 20 0 0"
+                                    Grid.Row="3">
+                            <Label Height="30"
+                                   Width="30"
+                                   pu:LabelHelper.CornerRadius="15"
+                                   Background="Transparent"
+                                   Content="24"
+                                   FontSize="15"
+                                   Foreground="Gray"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   HorizontalContentAlignment="Center"/>
+                            <Label Height="30"
+                                   Width="30"
+                                   pu:LabelHelper.CornerRadius="15"
+                                   Background="#3480f1"
+                                   Content="25"
+                                   FontSize="15"
+                                   Foreground="White"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"                                
+                                   HorizontalContentAlignment="Center"
+                                   pu:LabelHelper.ShadowColor="#3480f1"
+                                   pu:ShadowHelper.BlurRadius="10"
+                                   pu:ShadowHelper.Direction="270"
+                                   pu:ShadowHelper.ShadowDepth="4"
+                                   pu:ShadowHelper.Opacity="0.8"/>
+                            <Label Height="30"
+                                   Width="30"
+                                   pu:LabelHelper.CornerRadius="15"
+                                   Background="Transparent"
+                                   Content="26"
+                                   FontSize="15"
+                                   Foreground="Gray"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   HorizontalContentAlignment="Center"/>
+                            <Label Height="30"
+                                   Width="30"
+                                   pu:LabelHelper.CornerRadius="15"
+                                   Background="Transparent"
+                                   Content="27"
+                                   FontSize="15"
+                                   Foreground="Gray"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   HorizontalContentAlignment="Center"/>
+                            <Label Height="30"
+                                   Width="30"
+                                   pu:LabelHelper.CornerRadius="15"
+                                   Background="Transparent"
+                                   Content="28"
+                                   FontSize="15"
+                                   Foreground="Gray"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   HorizontalContentAlignment="Center"/>
+                            <Label Height="30"
+                                   Width="30"
+                                   pu:LabelHelper.CornerRadius="15"
+                                   Background="Transparent"
+                                   Content="29"
+                                   FontSize="15"
+                                   Foreground="Gray"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   HorizontalContentAlignment="Center"/>
+                            <Label Height="30"
+                                   Width="30"
+                                   pu:LabelHelper.CornerRadius="15"
+                                   Background="Transparent"
+                                   Content="30"
+                                   FontSize="15"
+                                   Foreground="Gray"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   HorizontalContentAlignment="Center"/>
+                        </UniformGrid>
+                        <Rectangle Height="1"
+                                   Fill="#efefef"
+                                   Grid.Row="4"
+                                   Margin="0 30"/>
+                        <TextBlock Text="Activity" Grid.Row="5" 
+                                   FontSize="15" FontWeight="Bold"/>
+                        <Button Grid.Row="5"
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Center"
+                                Margin="0 -10 0 0"
+                                Content="{Icon:Material Kind=Home}"
+                                Height="40"
+                                Width="40"
+                                BorderThickness="1"
+                                BorderBrush="LightGray"
+                                pu:ButtonHelper.CornerRadius="20"
+                                Background="Transparent"
+                                pu:ButtonHelper.ShadowColor="Gray"
+                                pu:ShadowHelper.BlurRadius="10"
+                                pu:ShadowHelper.Direction="90"
+                                pu:ShadowHelper.ShadowDepth="5"
+                                VerticalContentAlignment="Center"
+                                pu:ShadowHelper.Opacity="0.2"/>
+                        <ItemsControl Grid.Row="6"
+                                      x:Name="IcActivity">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid Margin="10,5,0,0">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="auto"/>
+                                                <RowDefinition/>
+                                            </Grid.RowDefinitions>
+                                            <Grid>
+                                                <Border Width="40"
+                                                    Height="40"
+                                                    RenderOptions.BitmapScalingMode="HighQuality"
+                                                    CornerRadius="20"
+                                                    BorderThickness="2"
+                                                    BorderBrush="Gold">
+                                                    <Border.Background>
+                                                        <ImageBrush ImageSource="{Binding HeadImage}"/>
+                                                    </Border.Background>
+                                                </Border>
+                                                <!--<Label Content="{Icon:Material Kind=Link, Height=8,Width=8}"
+                                                      Height="20"
+                                                      Width="20"
+                                                      pu:LabelHelper.CornerRadius="10"
+                                                      Background="White"
+                                                       VerticalAlignment="Bottom"
+                                                       HorizontalAlignment="Right"
+                                                       Margin="35 0 0 0"
+                                                       BorderThickness="1"
+                                                       BorderBrush="Goldenrod"/>-->
+                                                <pu:Badge Width="10"
+                                                      Height="10"
+                                                      IsWaving="True"
+                                                      WaveBrush="Goldenrod"
+                                                      WaveScale="2"
+                                                      WaveThickness="5"
+                                                      HorizontalAlignment="Right"
+                                                      VerticalAlignment="Top"
+                                                      BorderThickness="1"
+                                                      HoverBorderBrush="Goldenrod"
+                                                      Content="{Icon:Material Kind=Link, Height=8,Width=8}"
+                                                      CornerRadius="5"                                         
+                                                      pu:ShadowColor="Red"
+                                                      pu:ShadowHelper.BlurRadius="20"
+                                                      pu:ShadowHelper.Direction="270"
+                                                      pu:ShadowHelper.Opacity="0.2"/>
+                                            </Grid>
+                                            
+                                            <Rectangle Stroke="#efefef"
+                                                       StrokeThickness="2"
+                                                       StrokeDashArray="2,5,5,5"
+                                                       
+                                                       Grid.Row="1"
+                                                       HorizontalAlignment="Center"
+                                                       Width="2"
+                                                       Margin="0 2 0 0"/>
+                                        </Grid>
+                                        <Grid Grid.Column="1">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="auto"/>
+                                                <RowDefinition Height="auto"/>
+                                                <RowDefinition Height="30"/>
+                                            </Grid.RowDefinitions>
+                                            <TextBlock Text="{Binding DisPlayName}"
+                                                       FontSize="15"
+                                                       Margin="10 0 0 0"/>
+                                            <TextBlock Text="{Binding DisPlayTime,StringFormat='yyyy-MM-dd HH:mm:ss'}"
+                                                       Margin="10 10 0 0" Foreground="Gray"
+                                                       FontSize="15" Grid.Row="1"/>
+                                        </Grid>
+                                    </Grid>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+
                     </Grid>
                 </Grid>
                 <Grid Background="#2200ff00">
